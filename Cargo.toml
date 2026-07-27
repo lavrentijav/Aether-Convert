@@ -1,0 +1,38 @@
+[package]
+name = "aether-convert"
+description = "Standalone Anvil (.mca) → Aether KV world migration tool."
+version = "0.1.0"
+edition = "2021"
+rust-version = "1.80"
+license = "MIT OR Apache-2.0"
+repository = "https://github.com/lavrentijav/Aether-Convert"
+authors = ["Aether Engine contributors"]
+default-run = "aether-convert"
+
+[features]
+# `fjall` gives the persistent LSM KV backend; `zstd` compresses sub-chunk
+# blobs. Both on by default. `--no-default-features` yields a dependency-light
+# build (in-memory store + raw blobs).
+default = ["fjall", "zstd"]
+fjall = ["dep:fjall"]
+zstd = ["dep:zstd"]
+
+[dependencies]
+miniz_oxide = "0.8"
+fjall = { version = "2", optional = true }
+zstd = { version = "0.13", optional = true }
+
+[dev-dependencies]
+# (none; the integration test uses miniz_oxide from the main deps)
+
+[[bin]]
+name = "aether-convert"
+path = "src/bin/aether_convert.rs"
+
+[profile.release]
+lto = "thin"
+codegen-units = 1
+
+[lints.clippy]
+all = { level = "warn", priority = -1 }
+undocumented_unsafe_blocks = "warn"
