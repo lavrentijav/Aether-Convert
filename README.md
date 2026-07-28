@@ -59,4 +59,4 @@ run checksum, throughput, and any non-fatal per-chunk errors.
 
 ## License
 
-MIT OR Apache-2.0. See [LICENSE](LICENSE).
+MPL2 See [LICENSE](LICENSE).
