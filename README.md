@@ -35,7 +35,8 @@ Example:
 
 ```bash
 cargo run --release -- ~/.minecraft/saves/MyWorld ./my-world-kv
-cargo run --release -- ~/.minecraft/saves/MyWorld --mem   # validate only
+# Dry run: both positional args are still required; the output path is ignored.
+cargo run --release -- ~/.minecraft/saves/MyWorld ./ignored --mem   # validate only
 ```
 
 The tool prints an audit report — regions, chunks and sub-chunks processed, a
